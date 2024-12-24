@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\OSProject\OSProject2024\ServerWorkSpace\.metadata\.plugins\org.eclipse.jdt.core
-3803894794.index
-1939522057.index
-1865797976.index
