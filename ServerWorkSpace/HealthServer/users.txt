@@ -3,3 +3,4 @@ james||12345||email2@email.com||password2||sales||manager
 john||123456||email3@email.com||password3||it||engineer
 jamie||1234567||email4@email.com||password4||it||engineer
 Cian||12345678||email5@email.com||password5||it||engineer
+Joseph||999||joe@email.com||password2||IT||Engineer

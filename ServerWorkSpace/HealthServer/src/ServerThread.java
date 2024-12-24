@@ -49,7 +49,7 @@ public class ServerThread extends Thread {
 
 			// Initial loop to login or register
 			do {
-				sendMessage("To enter System ~ Enter 1 	to Login or Enter 2 to Register");
+				sendMessage("To enter System ~ Enter 1 to Login or Enter 2 to Register");
 				message = (String) in.readObject();
 				result = Integer.parseInt(message);
 

@@ -3,27 +3,34 @@ import java.net.*;
 import java.util.Scanner;
 
 public class Requester {
+	//requester socket
 	Socket requestSocket;
+	//input and output stream variables
 	ObjectOutputStream out;
 	ObjectInputStream in;
+	//Message variables for communication with the server
 	String message;
+	//Scanner for client input
 	Scanner input;
 	String result;
 	String repeat;
+	
 	Requester() {
-
+		
 		input = new Scanner(System.in);
 	}
-
+	
 	void run() {
 		try {
+			//Connect local host to server socket port 2005
 			requestSocket = new Socket("127.0.0.1", 2005);
 			System.out.println("Connected to localhost in port 2005");
 			// 2. get Input and Output streams
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(requestSocket.getInputStream());
-
+			
+			//Initial loop to login or register
 			do {
 				message = (String) in.readObject();
 				System.out.println(message);
@@ -36,7 +43,8 @@ public class Requester {
 				}
 
 			} while (!message.equalsIgnoreCase("1") && !message.equalsIgnoreCase("2"));
-
+			
+			//Allow user to login
 			if (message.equals("1")) {
 				do {
 					// Email entry
@@ -63,7 +71,7 @@ public class Requester {
 				}while(message.equalsIgnoreCase("-1"));
 			}
 			
-
+			//Allows user to register
 			if (message.equals("2")) {
 
 				// Name
@@ -72,7 +80,7 @@ public class Requester {
 				result = input.nextLine();
 				sendMessage(result);
 
-				// EmployeeID
+				// EmployeeID - ensure its unique
 				do {
 					result = (String) in.readObject();
 					System.out.println(result);
@@ -89,7 +97,7 @@ public class Requester {
 				}while(message.equalsIgnoreCase("-1"));
 				
 
-				// Email
+				// Email - also must be unique
 				do {
 					result = (String) in.readObject();
 					System.out.println(result);
@@ -138,7 +146,7 @@ public class Requester {
 				do {
 					
 					switch(result) {
-					
+					//User creates a report
 					case "1":
 						message=(String) in.readObject();
 						System.out.println(message);
@@ -153,10 +161,12 @@ public class Requester {
 						System.out.println(message);
 						
 						break;
+					//lists all accident reports
 					case "2":
 						message=(String) in.readObject();
 						System.out.println(message);
 						break;
+					//Assign a report to an employee
 					case "3":
 						//Report ID
 						message=(String) in.readObject();
@@ -171,17 +181,21 @@ public class Requester {
 						sendMessage(message);
 						
 						break;
+					//Lists all reports to logged in employee
 					case "4":
 						message=(String) in.readObject();
 						System.out.println(message);
 						break;
+					//Update password
 					case "5":
+						//Enter new password message
 						message=(String) in.readObject();
 						System.out.println(message);
-						
+						//Read in new password an send to server
 						message = input.nextLine();
 						sendMessage(message);
 						
+						//Password successfully update message
 						message=(String) in.readObject();
 						System.out.println(message);
 						break;
@@ -190,21 +204,19 @@ public class Requester {
 						System.out.println(message);
 						
 					}
-					//System.out.println("End of ");
 
-					
+				//repeat if user does not enter a correct option
 				}while(!result.equalsIgnoreCase("1")&& !result.equalsIgnoreCase("2")&& !result.equalsIgnoreCase("3")&& !result.equalsIgnoreCase("4")&& !result.equalsIgnoreCase("5"));
 				
-				// Enter 1 to repeat
-				//System.out.println("Testing the repeat");
-				
+				// Enter 1 to repeat				
 				message = (String) in.readObject();
 				System.out.println(message);
 				repeat = input.nextLine();
 				sendMessage(repeat);
 
 			} while (repeat.equalsIgnoreCase("1"));
-
+			
+			//Goodbye message
 			message = (String) in.readObject();
 			System.out.println(message);
 
@@ -226,7 +238,8 @@ public class Requester {
 			}
 		}
 	}
-
+	
+	//Send message method
 	void sendMessage(String msg) {
 		try {
 			out.writeObject(msg);
@@ -236,7 +249,8 @@ public class Requester {
 			ioException.printStackTrace();
 		}
 	}
-
+	
+	//Call run method 
 	public static void main(String args[]) {
 		Requester client = new Requester();
 		client.run();

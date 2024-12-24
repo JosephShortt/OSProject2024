@@ -3,7 +3,7 @@ public class Report {
 	
 	private String reportType,date,employeeID,status,assigneeID,reportID;
 	
-	
+	//Constructor for report details
 	public Report(String reportType,String date, String employeeID, String status, String assigneeID, String reportID) {
 		this.reportType=reportType;
 		this.date = date;
@@ -13,11 +13,13 @@ public class Report {
 		this.reportID=reportID;
 	}
 	
+	//to string method for report details
 	public String toString()
 	{
 	    return reportType + "||" + date + "||" + employeeID + "||" + status + "||" + assigneeID + "||" + reportID;
 	}
-
+	//Getters and setter for report details
+	
 	public Object getID() {
 		return reportID;
 	}
