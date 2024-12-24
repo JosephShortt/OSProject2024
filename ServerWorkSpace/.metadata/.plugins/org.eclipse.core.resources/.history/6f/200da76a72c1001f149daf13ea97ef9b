@@ -1,0 +1,25 @@
+import java.util.Date;
+
+public class Report {
+	
+	private String reportType,employeeID,status,assigneeID,reportID;
+	private Date date;
+	
+	public Report(String reportType,Date date, String employeeID, String status, String assigneeID, String reportID) {
+		this.reportType=reportType;
+		this.date = date;
+		this.employeeID=employeeID;
+		this.status = status;
+		this.assigneeID=assigneeID;
+		this.reportID=reportID;
+	}
+	
+	public String toString()
+	{
+	    return reportType + "||" + date + "||" + employeeID + "||" + status + "||" + assigneeID + "||" + reportID;
+	}
+
+	public Object getID() {
+		return reportID;
+	}
+}

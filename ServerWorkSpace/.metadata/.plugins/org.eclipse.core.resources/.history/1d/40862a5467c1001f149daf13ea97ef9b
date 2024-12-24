@@ -1,0 +1,20 @@
+
+public class Report {
+	
+	private String reportType,date,employeeID,status,asigneeID,reportID;
+	
+	
+	public Report(String reportType,String date, String employeeID, String status, String asigneeID, String reportID) {
+		this.reportType=reportType;
+		this.date = date;
+		this.employeeID=employeeID;
+		this.status = status;
+		this.asigneeID=asigneeID;
+		this.reportID=reportID;
+	}
+	
+	public String toString()
+	{
+	    return reportType + "||" + date + "||" + employeeID + "||" + status + "||" + asigneeID + "||" + reportID;
+	}
+}
